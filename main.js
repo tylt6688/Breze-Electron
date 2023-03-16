@@ -1,4 +1,3 @@
-console.log(`欢迎来到 Electron 👋`)
 // electron 模块可以用来控制应用的生命周期和创建原生浏览窗口
 const {
     app,
@@ -6,18 +5,26 @@ const {
 } = require('electron')
 const path = require('path')
 
+require("./menu.js")
+
+//开发热部署，前期不好用暂时注释掉
+// const reLoader = require("electron-reloader")
+// reLoader(module)
+
+
 const createWindow = () => {
     // 创建浏览窗口
     const mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
+        icon: './src/assets/logo.ico',
         webPreferences: {
             preload: path.join(__dirname, 'preload.js')
         }
     })
 
     // 加载 index.html
-    mainWindow.loadFile('index.html')
+    mainWindow.loadFile('./src/index.html')
 
     // 打开开发工具
     // mainWindow.webContents.openDevTools()
